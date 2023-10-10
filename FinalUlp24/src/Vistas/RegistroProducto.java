@@ -15,7 +15,8 @@ import Entidades.Producto;
 public class RegistroProducto extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form RegistroProducto
+    
+    * Creates new form RegistroProducto
      */
     public RegistroProducto() {
         initComponents();
@@ -169,6 +170,9 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     private void jtextPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextPrecioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtextPrecioActionPerformed
