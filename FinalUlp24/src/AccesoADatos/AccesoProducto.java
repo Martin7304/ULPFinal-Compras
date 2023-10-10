@@ -31,7 +31,7 @@ public class AccesoProducto {
     
     public void guardarProducto(Producto producto){
         
-         String sql = "INSERT INTO Productos (nombre, descripcion, precio, stock, estado)"
+         String sql = "INSERT INTO Producto (nombre, descripcion, precioActual, stock, estado)"
                  + " VALUES (?, ?, ?, ?, ?)";
         
        try {
@@ -52,7 +52,7 @@ public class AccesoProducto {
            ps.close();
            
        } catch (SQLException ex){
-           JOptionPane.showMessageDialog(null,"Error al acceder a la tabla alumno");
+           JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto");
        }
     }
     
@@ -93,8 +93,14 @@ public class AccesoProducto {
         }
     }
     
-    public List<Producto> productosPorFecha(){
-        String sql="";
+    public List<Producto> productosPorFecha(Date fechaPedido){
+        /*
+        
+        */
+        String sql="SELECT P.idProducto, P.nombre, P.descripcion, DC.cantidad FROM producto AS P"+ 
+                "INNER JOIN detallecompra AS DC ON P.idProducto = DC.idProducto"+ 
+                "INNER JOIN compra AS C ON DC.idCompra = C.idCompra WHERE C.fecha = ?";
+        
         ArrayList<Producto> listaProductos= new ArrayList();
         
         try {
@@ -119,6 +125,8 @@ public class AccesoProducto {
        
        return listaProductos; 
     }
+    
+   
     
 }
 

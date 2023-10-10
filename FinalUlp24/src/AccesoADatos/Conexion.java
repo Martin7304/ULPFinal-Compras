@@ -33,5 +33,26 @@ public class Conexion {
         }
         return connection;
     }
+        /*
+    
+    FUNCIONALIDADES GENERALES                              // VISTAS menu bar
+                                                        PRODUCTOS           COMPRAS
+    Registrar productos                             /// registro            ¡nueva compra!
+    Realizar las Compras a proveedores              /// detall producto     detalles de compras  > segun fecha
+    Detalle de Compra                               ///     > stock mínimo                       > segun proveedor 
+    Administrar Proveedor                                   > mas comprados entre...             > segun compra
+                                                                  
+                                                                    PROVEEDORES
+    OTROS                                                     // registro
+                                                              // detall proveedor > segun producto
+    
+    ⮚	Todos los productos de una compra en una fecha específica.
+    ⮚	Todas las compras a un Proveedor P  
+    ⮚	Todos los productos de una compra en particular. 
+    ⮚	Mostrar qué proveedores, proveen el producto X.
+    ⮚	Aquellos productos que sean los más comprados entre fechas
+    ⮚	Aquellos productos están por debajo del stock mínimo
+    
+    */
     
 }
