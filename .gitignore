@@ -1,1 +1,4 @@
-/FinalUlp24/build/
+/build/
+/test/
+/dist/
+/nbproject/private
