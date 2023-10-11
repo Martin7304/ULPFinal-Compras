@@ -1,4 +1,4 @@
-repo/build/
-repo/test/
-repo/dist/
-repo/nbproject/private
+/build/
+/test/
+/dist/
+/nbproject/private
