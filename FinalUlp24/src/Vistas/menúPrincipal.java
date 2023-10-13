@@ -74,9 +74,19 @@ public class menúPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Detalle Producto");
 
         jMenuItem2.setText("Stock mínimo");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem2);
 
         jMenuItem3.setText("Más comprados");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem3);
 
         jMenu1.add(jMenu4);
@@ -160,6 +170,26 @@ public class menúPrincipal extends javax.swing.JFrame {
         escritorio.add(reg);
         escritorio.moveToFront(reg);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // CLICK SOTCK MÍNIMO
+        escritorio.removeAll();
+        escritorio.repaint();
+        stockMinimo sm = new stockMinimo();
+        sm.setVisible(true);
+        escritorio.add(sm);
+        escritorio.moveToFront(sm);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // CLICK MAS COMPRADO
+        escritorio.removeAll();
+        escritorio.repaint();
+        masComprado mas = new masComprado();
+        mas.setVisible(true);
+        escritorio.add(mas);
+        escritorio.moveToFront(mas);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
