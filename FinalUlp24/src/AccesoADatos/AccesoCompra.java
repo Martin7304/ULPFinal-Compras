@@ -37,8 +37,8 @@ public class AccesoCompra {
         
        try {
            PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-          /* ps.setProveedor(1, compra.getProveedor());
-           ps.setDate(4, Date.valueOf(compra.getFechaPedido()));*/
+           ps.setInt(1, compra.getProveedor().getId());
+           ps.setDate(2, Date.valueOf(compra.getFechaPedido()));
            ps.executeUpdate();
            
            ResultSet rs=ps.getGeneratedKeys();

@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -14,17 +15,17 @@ import java.util.Date;
 public class Compra {
     private int id;
     private Proveedor proveedor;
-    private Date fechaPedido;
+    private LocalDate fechaPedido;
 
     public Compra() {
     }
 
-    public Compra(Proveedor proveedor, Date fechaPedido) {
+    public Compra(Proveedor proveedor, LocalDate fechaPedido) {
         this.proveedor = proveedor;
         this.fechaPedido = fechaPedido;
     }
 
-    public Compra(int id, Proveedor proveedor, Date fechaPedido) {
+    public Compra(int id, Proveedor proveedor, LocalDate fechaPedido) {
         this.id = id;
         this.proveedor = proveedor;
         this.fechaPedido = fechaPedido;
@@ -48,11 +49,11 @@ public class Compra {
         this.proveedor = proveedor;
     }
 
-    public Date getFechaPedido() {
+    public LocalDate getFechaPedido() {
         return fechaPedido;
     }
 
-    public void setFechaPedido(Date fechaPedido) {
+    public void setFechaPedido(LocalDate fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
     

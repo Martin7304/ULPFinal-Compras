@@ -37,6 +37,11 @@ public class Producto {
         this.estado = estado;
     }
 
+    public Producto(String nombre, int stock) {
+        this.nombre = nombre;
+        this.stock = stock;
+    }
+
 
 
 
