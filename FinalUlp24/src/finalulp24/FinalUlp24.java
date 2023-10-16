@@ -5,6 +5,8 @@
  */
 package finalulp24;
 
+import AccesoADatos.Conexion;
+
 /**
  *
  * @author marti
@@ -16,6 +18,7 @@ public class FinalUlp24 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Conexion.getConexion();
     }
     
 }
