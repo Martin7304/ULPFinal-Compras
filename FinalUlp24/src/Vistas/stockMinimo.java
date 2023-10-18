@@ -40,7 +40,7 @@ public class stockMinimo extends javax.swing.JInternalFrame {
     */
     public int seleccionCombo() {
         int seleccion = jComboBox1.getSelectedIndex();
-        return seleccion + 1; 
+        return seleccion; 
         // sumamos uno porque el INDEX indice comienza en 0
     }
             
@@ -135,11 +135,11 @@ public class stockMinimo extends javax.swing.JInternalFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // CLICK SOBRE COMBOBOX
-        int seleccion = seleccionCombo();
+        
         AccesoProducto ap = new AccesoProducto();
-        List<Producto> lista=ap.stockMinimo(seleccion);
+        List<Producto> lista=ap.stockMinimo(jComboBox1.getSelectedIndex());
         for (Producto a: lista){
-          model.addRow(new Object[]{a.getNombre(),a.getStock()});
+           model.addRow(new Object[]{a.getNombre(),a.getStock()});
         }
         
     }//GEN-LAST:event_jComboBox1ActionPerformed

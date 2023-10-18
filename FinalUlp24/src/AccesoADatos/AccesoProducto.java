@@ -15,8 +15,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -134,7 +133,7 @@ public class AccesoProducto {
         
         if (seleccion == 0) {
 
-            String sql = "SELECT `stock` FROM `producto` WHERE `stock` = 0;";
+            String sql = "SELECT `stock` FROM `producto` WHERE `stock` = 5;";
             PreparedStatement ps;
             try {
                 ps = con.prepareStatement(sql);
@@ -169,7 +168,7 @@ public class AccesoProducto {
             return listaProductos;
         }
         
-        if (seleccion == 3) {
+        if (seleccion == 2) {
             String sql3 = "SELECT `stock` FROM `producto` WHERE `stock` > 3";
             PreparedStatement ps3;
             try {

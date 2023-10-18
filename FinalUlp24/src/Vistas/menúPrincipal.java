@@ -133,22 +133,27 @@ public class menúPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+         /// CLICK REGISTRO PROD
+        escritorio.removeAll();
+        escritorio.repaint();
+        RegistroProducto rp = new RegistroProducto();
+        rp.setVisible(true);
+        escritorio.add(rp);
+        escritorio.moveToFront(rp);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // CLICK STOCK MINIMO
         escritorio.removeAll();
         escritorio.repaint();
         stockMinimo sm = new stockMinimo();
         sm.setVisible(true);
         escritorio.add(sm);
         escritorio.moveToFront(sm);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        // CLICK MAS COMPRADO
         escritorio.removeAll();
         escritorio.repaint();
         masComprado mc = new masComprado();
