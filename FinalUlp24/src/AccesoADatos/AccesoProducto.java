@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -95,114 +96,132 @@ public class AccesoProducto {
         }
     }
     
-    public List<Producto> productosPorFecha(Date fechaPedido){
+    public List<Producto> productosPorFecha(Date fechaPedido) {
         /*
         
-        */
-        String sql="SELECT P.idProducto, P.nombre, P.descripcion, DC.cantidad FROM producto AS P"+ 
-                "INNER JOIN detallecompra AS DC ON P.idProducto = DC.idProducto"+ 
-                "INNER JOIN compra AS C ON DC.idCompra = C.idCompra WHERE C.fecha = ?";
-        
-        ArrayList<Producto> listaProductos= new ArrayList();
-        
+         */
+        String sql = "SELECT P.idProducto, P.nombre, P.descripcion, DC.cantidad FROM producto AS P"
+                + "INNER JOIN detallecompra AS DC ON P.idProducto = DC.idProducto"
+                + "INNER JOIN compra AS C ON DC.idCompra = C.idCompra WHERE C.fecha = ?";
+
+        ArrayList<Producto> listaProductos = new ArrayList();
+
         try {
-            PreparedStatement ps= con.prepareStatement(sql);
-            ResultSet rs= ps.executeQuery();
-            
-            while(rs.next()){
-                Producto producto= new Producto();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Producto producto = new Producto();
                 producto.setId(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecioActual(rs.getDouble("precioActual"));
                 producto.setStock(rs.getInt("stock"));
                 producto.setEstado(true);
-                
+
                 listaProductos.add(producto);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla XXXX");
+        }
+
+        return listaProductos;
+    }
+
+    public List<Producto> stockMinimo(int seleccion) {
+        ArrayList<Producto> listaProductos = new ArrayList();
+        
+        if (seleccion == 0) {
+
+            String sql = "SELECT `stock` FROM `producto` WHERE `stock` = 0;";
+            PreparedStatement ps;
+            try {
+                ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    Producto producto = new Producto();
+                    producto.setNombre(rs.getString("nombre"));
+                    producto.setStock(rs.getInt("stock"));
+                    listaProductos.add(producto);
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO");
+            }
+                return listaProductos;
+
+        } else if (seleccion == 1) {
+
+            String sql2 = "SELECT `stock` FROM `producto` WHERE `stock` < 3;";
+            PreparedStatement ps2;
+            try {
+                ps2 = con.prepareStatement(sql2);
+                ResultSet rs2 = ps2.executeQuery();
+                while (rs2.next()) {
+                    Producto producto = new Producto();
+                    producto.setNombre(rs2.getString("nombre"));
+                    producto.setStock(rs2.getInt("stock"));
+                    listaProductos.add(producto);
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO");
+            }
+            return listaProductos;
+        }
+        
+        if (seleccion == 3) {
+            String sql3 = "SELECT `stock` FROM `producto` WHERE `stock` > 3";
+            PreparedStatement ps3;
+            try {
+                ps3 = con.prepareStatement(sql3);
+                ResultSet rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    Producto producto = new Producto();
+                    producto.setNombre(rs3.getString("nombre"));
+                    producto.setStock(rs3.getInt("stock"));
+                    listaProductos.add(producto);
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO");
+            }
+            return listaProductos;
+        }
+        //RETORNO FINAL
+        return listaProductos;
+        }
+
+    public List<Producto> masComprados (LocalDate fecha1, LocalDate fecha2) {
+        
+        ArrayList<Producto> listaProductos = new ArrayList();
+        String sql= "SELECT P.nombre, SUM(DC.cantidad) FROM producto AS P"+
+                    "JOIN detallecompra AS DC ON P.idProducto = DC.idProducto" +
+                    "JOIN compras AS C ON DC.idCompra = C.idCompra"+
+                    "WHERE C.fecha BETWEEN ? AND ?"+
+                    "GROUP BY P.idProducto, P.nombre" +
+                    "ORDER BY DC.cantidad DESC;";
+           
+     // TABLA DEVUELVE >> nombre y cantidad de productos en orden decendente        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+                    
+            while (rs.next()) {
+                // armar el objeto y añadirlo a la lista
+                // el SELC devuelve nombre y cantidad solamente
+               Producto producto = new Producto();
+               producto.setNombre(rs.getString("nombre"));
+               producto.setStock(rs.getInt("cantidad"));
+               listaProductos.add(producto);
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla XXXX");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO");
         }
-       
-       return listaProductos; 
+           
+        return listaProductos;
+        
     }
     
-    public List<Producto> Stock0(){
-        
-        String sql = "SELECT `stock` FROM `producto` WHERE `stock` = 0;";
-        ArrayList<Producto> listaProductos= new ArrayList();
-        
-         PreparedStatement ps;
-        try {
-            ps = con.prepareStatement(sql);
-            ResultSet rs= ps.executeQuery();
-            while(rs.next()){
-                Producto producto= new Producto();
-               
-                producto.setNombre(rs.getString("nombre"));  
-                producto.setStock(rs.getInt("stock"));
-               
-                listaProductos.add(producto);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla XXXX");
-        }
-         
-    
-    return listaProductos;
-    };
-   
-        public List<Producto> StockMenor3(){
-        
-        String sql = "SELECT `stock` FROM `producto` WHERE `stock` < 3;";
-        ArrayList<Producto> listaProductos= new ArrayList();
-        
-         PreparedStatement ps;
-        try {
-            ps = con.prepareStatement(sql);
-            ResultSet rs= ps.executeQuery();
-            while(rs.next()){
-                Producto producto= new Producto();
-               
-                producto.setNombre(rs.getString("nombre"));  
-                producto.setStock(rs.getInt("stock"));
-               
-                listaProductos.add(producto);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla XXXX");
-        }
-         
-    
-    return listaProductos;
-    };
-        
-            public List<Producto> StockMayor3(){
-        
-        String sql = "SELECT `stock` FROM `producto` WHERE `stock` > 3";
-        ArrayList<Producto> listaProductos= new ArrayList();
-        
-         PreparedStatement ps;
-        try {
-            ps = con.prepareStatement(sql);
-            ResultSet rs= ps.executeQuery();
-            while(rs.next()){
-                Producto producto= new Producto();
-               
-                producto.setNombre(rs.getString("nombre"));  
-                producto.setStock(rs.getInt("stock"));
-               
-                listaProductos.add(producto);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla XXXX");
-        }
-         
-    
-    return listaProductos;
-    };
-   
-   
 }
 

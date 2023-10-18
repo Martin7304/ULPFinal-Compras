@@ -38,6 +38,7 @@ public class Producto {
     }
 
     public Producto(String nombre, int stock) {
+        /// la usamos para stockMinimo
         this.nombre = nombre;
         this.stock = stock;
     }

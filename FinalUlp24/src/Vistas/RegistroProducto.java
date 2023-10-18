@@ -136,7 +136,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         getContentPane().add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 490, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 790, 560));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

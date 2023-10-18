@@ -5,6 +5,9 @@
  */
 package Vistas;
 
+import AccesoADatos.AccesoProducto;
+import Entidades.Producto;
+import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +22,7 @@ public class stockMinimo extends javax.swing.JInternalFrame {
     public stockMinimo() {
         initComponents();
         armarCabecera();
+        //cargarCombo();
         
     }
     public void armarCabecera(){
@@ -27,9 +31,19 @@ public class stockMinimo extends javax.swing.JInternalFrame {
         
         jTable1.setModel(model);
     }
-    
-    
-
+    /*
+    public void cargarCombo() {
+        jComboBox1.addItem("<minimo");
+        jComboBox1.addItem("minimo");
+        jComboBox1.addItem(">minimo");
+    }
+    */
+    public int seleccionCombo() {
+        int seleccion = jComboBox1.getSelectedIndex();
+        return seleccion + 1; 
+        // sumamos uno porque el INDEX indice comienza en 0
+    }
+            
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,9 +53,7 @@ public class stockMinimo extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        Stock0 = new javax.swing.JRadioButton();
-        Stockme3 = new javax.swing.JRadioButton();
-        Stockma3 = new javax.swing.JRadioButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setClosable(true);
 
@@ -63,11 +75,17 @@ public class stockMinimo extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Elije una opción:");
 
-        Stock0.setText("Stock = 0");
-
-        Stockme3.setText("Stock < 3");
-
-        Stockma3.setText("Stock > 3");
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ">mínimo", "mínimo", "<mínimo" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,33 +97,28 @@ public class stockMinimo extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(178, 178, 178)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Stock0)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Stockme3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Stockma3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Stock0)
-                    .addComponent(Stockme3)
-                    .addComponent(Stockma3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
@@ -113,12 +126,28 @@ public class stockMinimo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+        // CLICK SOBRE JCOMBOBOX - OPCIONES DE STOCK MINIMO
+        
+        // traer el 'seleccionCombo' que devuelve un INT 
+        // para la funcion stockMinimo(recibe el int 'seleccion')
+    }//GEN-LAST:event_jComboBox1MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // CLICK SOBRE COMBOBOX
+        int seleccion = seleccionCombo();
+        AccesoProducto ap = new AccesoProducto();
+        List<Producto> lista=ap.stockMinimo(seleccion);
+        for (Producto a: lista){
+          model.addRow(new Object[]{a.getNombre(),a.getStock()});
+        }
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton Stock0;
-    private javax.swing.JRadioButton Stockma3;
-    private javax.swing.JRadioButton Stockme3;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
