@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
+ * 
  * @author Mi PC
  */
 public class stockMinimo extends javax.swing.JInternalFrame {
