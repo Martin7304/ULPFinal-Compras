@@ -64,12 +64,13 @@ public class AccesoProducto {
         
         String sql="UPDATE producto SET nombre=?, descripcion=?, precioActual=?, stock=? WHERE idProducto=?";
     
-        try {
+        try {   
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, producto.getNombre());
             ps.setString(2, producto.getDescripcion());
             ps.setDouble(3, producto.getPrecioActual());
             ps.setInt(4, producto.getStock());
+            ps.setInt(5, producto.getId());
             
             int exito = ps.executeUpdate();
             
@@ -81,6 +82,38 @@ public class AccesoProducto {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla PRODUCTO");
         }
     }
+    
+    public Producto buscarProducto(int id) {
+        Producto p = new Producto();
+        try {
+            String busqueda = "SELECT `idProducto`, `nombre`, `descripcion`, `precioActual`, `stock`, `estado`"
+                    + " FROM `producto` WHERE idProducto= ? AND estado = 1";
+            
+            PreparedStatement ps = con.prepareStatement(busqueda);
+            ps.setInt(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                
+                p.setId(rs.getInt("idProducto"));
+                p.setNombre(rs.getString("nombre"));
+                p.setDescripcion(rs.getString("descripcion"));
+                p.setPrecioActual(rs.getDouble("precioActual"));
+                p.setStock(rs.getInt("stock"));
+                p.setEstado(true);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el Producto.");
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto. " + ex.getMessage());
+        }
+        return p;
+    }
+    
     
     public void eliminarProducto(int id) {
         

@@ -124,6 +124,11 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
 
         botonModificar.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, -1, -1));
 
         botonGuardar.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
@@ -147,6 +152,14 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         // TODO add your handling code here:
+         AccesoProducto prod = new AccesoProducto();
+        Producto p = prod.buscarProducto(Integer.parseInt(textId.getText()));
+        textNombre.setText(p.getNombre());
+        textDescripcion.setText(p.getDescripcion());
+        textPrecio.setText(""+p.getPrecioActual());
+        textStock.setText(""+p.getStock());
+        RadioEstado.setSelected(p.isEstado());
+        
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void textPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrecioActionPerformed
@@ -169,8 +182,24 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         pr.setEstado(true);
         
         acc.guardarProducto(pr);
-                
+        Limpiar();
     }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        // TODO add your handling code here:
+        AccesoProducto acc = new AccesoProducto();
+        Producto pr = new Producto();
+        
+        pr.setNombre(textNombre.getText());
+        pr.setDescripcion(textDescripcion.getText());
+        pr.setPrecioActual(Double.parseDouble(textPrecio.getText()));
+        pr.setStock(Integer.parseInt(textStock.getText()));
+        pr.setId(Integer.parseInt(textId.getText()));
+        //pr.setEstado(RadioEstado.isSelected());
+        
+        acc.modificarProduto(pr);
+        Limpiar();
+    }//GEN-LAST:event_botonModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -196,4 +225,19 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textStock;
     // End of variables declaration//GEN-END:variables
 
+    
+    public void Limpiar(){
+        
+        textId.setText("");
+        textNombre.setText("");
+        textDescripcion.setText("");
+        textPrecio.setText("");
+        textStock.setText("");
+        RadioEstado.setSelected(false);
+
+    }
+    
+    
 }
+
+
