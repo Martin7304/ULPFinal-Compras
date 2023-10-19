@@ -168,58 +168,62 @@ public class AccesoProducto {
         
         if (seleccion == 0) {
 
-            String sql = "SELECT `stock` FROM `producto` WHERE `stock` = 5;";
+             String sql = "SELECT `nombre`, `stock` FROM `producto` WHERE `stock` = 5;";
             PreparedStatement ps;
             try {
                 ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     Producto producto = new Producto();
+                    
                     producto.setNombre(rs.getString("nombre"));
                     producto.setStock(rs.getInt("stock"));
                     listaProductos.add(producto);
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO");
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO" + ex.getMessage());
             }
                 return listaProductos;
 
         } else if (seleccion == 1) {
 
-            String sql2 = "SELECT `stock` FROM `producto` WHERE `stock` < 3;";
+            String sql2 = "SELECT `nombre`, `stock` FROM `producto` WHERE `stock` < 3;";
             PreparedStatement ps2;
             try {
                 ps2 = con.prepareStatement(sql2);
-                ResultSet rs2 = ps2.executeQuery();
-                while (rs2.next()) {
+                ResultSet rs = ps2.executeQuery();
+                while (rs.next()) {
                     Producto producto = new Producto();
-                    producto.setNombre(rs2.getString("nombre"));
-                    producto.setStock(rs2.getInt("stock"));
+                    
+                    producto.setNombre(rs.getString("nombre"));
+                    producto.setStock(rs.getInt("stock"));
                     listaProductos.add(producto);
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO");
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO" + ex.getMessage());
             }
-            return listaProductos;
+                return listaProductos;
+
         }
         
         if (seleccion == 2) {
-            String sql3 = "SELECT `stock` FROM `producto` WHERE `stock` > 3";
+            String sql3 = "SELECT `nombre`, `stock` FROM `producto` WHERE `stock` > 3 AND `stock` < 7";
             PreparedStatement ps3;
             try {
                 ps3 = con.prepareStatement(sql3);
-                ResultSet rs3 = ps3.executeQuery();
-                while (rs3.next()) {
+                ResultSet rs = ps3.executeQuery();
+                while (rs.next()) {
                     Producto producto = new Producto();
-                    producto.setNombre(rs3.getString("nombre"));
-                    producto.setStock(rs3.getInt("stock"));
+                    
+                    producto.setNombre(rs.getString("nombre"));
+                    producto.setStock(rs.getInt("stock"));
                     listaProductos.add(producto);
                 }
-
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO");
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla PRODUCTO" + ex.getMessage());
             }
-            return listaProductos;
+                return listaProductos;
+            
         }
         //RETORNO FINAL
         return listaProductos;

@@ -136,7 +136,7 @@ public class stockMinimo extends javax.swing.JInternalFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // CLICK SOBRE COMBOBOX
-        
+        borrarFilaTabla();
         AccesoProducto ap = new AccesoProducto();
         List<Producto> lista=ap.stockMinimo(jComboBox1.getSelectedIndex());
         for (Producto a: lista){
@@ -155,6 +155,12 @@ public class stockMinimo extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    
+    private void borrarFilaTabla(){
+        int indice = model.getRowCount() -1;
+        
+        for(int i = indice;i>=0;i--){
+            model.removeRow(i); 
+        }
+    }
 
 }
