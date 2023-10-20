@@ -8,6 +8,7 @@ package Vistas;
 
 import AccesoADatos.AccesoProducto;
 import Entidades.Producto;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -174,7 +175,16 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         // Guardar producto
         AccesoProducto acc = new AccesoProducto();
         Producto pr = new Producto();
+        String nombre = textNombre.getText();
+        String descripcion = textDescripcion.getText();
+        String stock = textStock.getText();
+        String precio = textPrecio.getText();
         
+        //CONDICION PARA QUE NO SE PUEDAN INGRESAR NUMEROS
+        if (!contieneNumeros(nombre) && !contieneNumeros(descripcion) && !contieneLetras(precio) && !contieneLetras(stock)){
+        pr.setNombre(nombre);
+        pr.setDescripcion(descripcion);
+
         pr.setNombre(textNombre.getText());
         pr.setDescripcion(textDescripcion.getText());
         pr.setPrecioActual(Double.parseDouble(textPrecio.getText()));
@@ -183,6 +193,25 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         
         acc.guardarProducto(pr);
         Limpiar();
+    } else {
+        JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos en los campos.");
+        if (contieneNumeros(nombre)){
+            textNombre.setText("");
+        }
+        if (contieneNumeros(descripcion)){
+            textDescripcion.setText("");
+            
+        }
+        if (contieneLetras(precio)){
+            textPrecio.setText("");
+        }
+        if (contieneLetras(stock)){
+            textStock.setText("");
+        }
+
+    }
+        
+
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
@@ -237,6 +266,23 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
 
     }
     
+    private boolean contieneNumeros(String texto) {
+    for (char c : texto.toCharArray()) {
+        if (Character.isDigit(c)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+    private boolean contieneLetras(String texto) {
+    for (char c : texto.toCharArray()) {
+        if (Character.isLetter(c)) {
+            return true;
+        }
+    }
+    return false;
+}
     
 }
 
