@@ -11,28 +11,29 @@ package Entidades;
  */
 public class Proveedor {
     private int id;
-    private String nombreCompleto;
     private String razonSocial;
     private String direccion;
-    private String telefono;
+    private int telefono;
 
     public Proveedor() {
     }
 
-    public Proveedor(String nombreCompleto, String razonSocial, String direccion, String telefono) {
-        this.nombreCompleto = nombreCompleto;
+    public Proveedor( String razonSocial, String direccion, int telefono) {
+
         this.razonSocial = razonSocial;
         this.direccion = direccion;
         this.telefono = telefono;
     }
 
-    public Proveedor(int id, String nombreCompleto, String razonSocial, String direccion, String telefono) {
+    public Proveedor(int id, String nombreCompleto, String razonSocial, String direccion, int telefono) {
         this.id = id;
-        this.nombreCompleto = nombreCompleto;
+
         this.razonSocial = razonSocial;
         this.direccion = direccion;
         this.telefono = telefono;
     }
+
+
 
     // Constructor, getters y setters
 
@@ -44,13 +45,8 @@ public class Proveedor {
         this.id = id;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
-    }
+
 
     public String getRazonSocial() {
         return razonSocial;
@@ -68,13 +64,14 @@ public class Proveedor {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-    
+
+
 }
 

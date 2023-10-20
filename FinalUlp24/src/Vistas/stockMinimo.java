@@ -76,7 +76,7 @@ public class stockMinimo extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Elije una opción:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ">mínimo", "mínimo", "<mínimo" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Stock=5", "Stock<3", "Stock>3" }));
         jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jComboBox1MouseClicked(evt);

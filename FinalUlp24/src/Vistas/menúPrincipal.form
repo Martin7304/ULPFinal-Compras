@@ -98,6 +98,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registrar proveedor"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem10ActionPerformed"/>
+              </Events>
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="jMenu6">
               <Properties>
