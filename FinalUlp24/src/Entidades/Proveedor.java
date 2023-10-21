@@ -45,9 +45,6 @@ public class Proveedor {
         this.id = id;
     }
 
-
-
-
     public String getRazonSocial() {
         return razonSocial;
     }
@@ -71,6 +68,11 @@ public class Proveedor {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+
+
+
+
+
 
 
 }

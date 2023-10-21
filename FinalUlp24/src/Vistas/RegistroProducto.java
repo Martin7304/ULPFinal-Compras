@@ -49,6 +49,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         RadioEstado = new javax.swing.JRadioButton();
         botonModificar = new javax.swing.JButton();
         botonGuardar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
@@ -79,7 +80,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
                 botonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 490, -1, -1));
+        getContentPane().add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel3.setText("Nombre:");
@@ -130,7 +131,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
                 botonModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, -1, -1));
+        getContentPane().add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 490, -1, -1));
 
         botonGuardar.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         botonGuardar.setText("Guardar");
@@ -141,8 +142,16 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         });
         getContentPane().add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 490, -1, -1));
 
+        jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, -1, -1));
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 560));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 790, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,12 +237,19 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         Limpiar();
     }//GEN-LAST:event_botonModificarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AccesoProducto acc = new AccesoProducto();
+        acc.eliminarProducto(Integer.parseInt(textId.getText()));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton RadioEstado;
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonModificar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

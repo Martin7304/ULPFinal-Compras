@@ -43,6 +43,8 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
         MODIFICAR = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         textNumero = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setBackground(new java.awt.Color(51, 255, 204));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -75,8 +77,27 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
         });
 
         MODIFICAR.setText("MODIFICAR");
+        MODIFICAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MODIFICARActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Numero de contacto");
+
+        jButton1.setText("ELIMINAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("LIMPIAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,12 +105,14 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(26, 26, 26)
                 .addComponent(MODIFICAR)
                 .addGap(48, 48, 48)
                 .addComponent(GUARDAR)
                 .addGap(78, 78, 78))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(236, 236, 236))
             .addGroup(layout.createSequentialGroup()
@@ -108,7 +131,9 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
                         .addComponent(BUSCAR))
                     .addComponent(textDomicilio)
                     .addComponent(textNumero))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jButton1)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +144,8 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BUSCAR))
+                    .addComponent(BUSCAR)
+                    .addComponent(jButton1))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -135,7 +161,8 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GUARDAR)
-                    .addComponent(MODIFICAR))
+                    .addComponent(MODIFICAR)
+                    .addComponent(jButton2))
                 .addGap(38, 38, 38))
         );
 
@@ -144,6 +171,12 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
 
     private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
         // TODO add your handling code here:
+         AccesoProveedor prod = new AccesoProveedor();
+        Proveedor p = prod.buscarProveedor(Integer.parseInt(textId.getText()));
+        textNombre.setText(p.getRazonSocial());
+        textDomicilio.setText(p.getDireccion());
+        textNumero.setText(""+p.getTelefono());
+
     }//GEN-LAST:event_BUSCARActionPerformed
 
     private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
@@ -186,11 +219,39 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_GUARDARActionPerformed
 
+    private void MODIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MODIFICARActionPerformed
+        // TODO add your handling code here:
+        AccesoProveedor c = new AccesoProveedor();
+        Proveedor pr = new Proveedor();
+        
+        pr.setRazonSocial(textNombre.getText());
+        pr.setDireccion(textDomicilio.getText());
+        pr.setTelefono(Integer.parseInt(textNumero.getText()));
+        pr.setId(Integer.parseInt(textId.getText()));
+
+        c.modificarProveedor(pr);
+
+        
+    }//GEN-LAST:event_MODIFICARActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Limpiar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AccesoProveedor acc = new AccesoProveedor();
+        acc.eliminarProveedor(Integer.parseInt(textId.getText()));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUSCAR;
     private javax.swing.JButton GUARDAR;
     private javax.swing.JButton MODIFICAR;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

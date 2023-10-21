@@ -123,7 +123,7 @@ public class AccesoProducto {
             ps.setInt(1, id);
             int exito=ps.executeUpdate();
             if(exito==1){
-                  JOptionPane.showMessageDialog(null,"Alumno dado baja");
+                  JOptionPane.showMessageDialog(null,"Producto dado baja");
               }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla PRODUCTO");
@@ -133,7 +133,8 @@ public class AccesoProducto {
     public List<Producto> productosPorFecha(Date fechaPedido) {
         /*
         
-         */
+         */ 
+        
         String sql = "SELECT P.idProducto, P.nombre, P.descripcion, DC.cantidad FROM producto AS P"
                 + "INNER JOIN detallecompra AS DC ON P.idProducto = DC.idProducto"
                 + "INNER JOIN compra AS C ON DC.idCompra = C.idCompra WHERE C.fecha = ?";
