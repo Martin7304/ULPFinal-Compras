@@ -50,6 +50,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         botonModificar = new javax.swing.JButton();
         botonGuardar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
@@ -150,8 +151,16 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, -1, -1));
 
+        jButton2.setText("Limpiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, -1, -1));
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 790, 560));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 790, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -226,6 +235,13 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         AccesoProducto acc = new AccesoProducto();
         Producto pr = new Producto();
         
+        String nombre = textNombre.getText();
+        String descripcion = textDescripcion.getText();
+        String stock = textStock.getText();
+        String precio = textPrecio.getText();
+        
+        
+         if (!contieneNumeros(nombre) && !contieneNumeros(descripcion) && !contieneLetras(precio) && !contieneLetras(stock)){
         pr.setNombre(textNombre.getText());
         pr.setDescripcion(textDescripcion.getText());
         pr.setPrecioActual(Double.parseDouble(textPrecio.getText()));
@@ -234,7 +250,21 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         //pr.setEstado(RadioEstado.isSelected());
         
         acc.modificarProduto(pr);
-        Limpiar();
+        
+         } else {
+        JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos en los campos.");
+        if (contieneNumeros(nombre)){
+            textNombre.setText("");
+        }
+        if (contieneNumeros(descripcion)){
+            textDescripcion.setText("");
+        }
+        if (contieneLetras(precio)){
+            textPrecio.setText("");
+        }
+        if (contieneLetras(stock)){
+            textStock.setText("");
+        }}
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -243,6 +273,11 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         acc.eliminarProducto(Integer.parseInt(textId.getText()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Limpiar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton RadioEstado;
@@ -250,6 +285,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -40,6 +40,7 @@ public class NuevaCompra extends javax.swing.JInternalFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
+        setCursor(new java.awt.Cursor(java.awt.Cursor.S_RESIZE_CURSOR));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N

@@ -224,13 +224,32 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
         AccesoProveedor c = new AccesoProveedor();
         Proveedor pr = new Proveedor();
         
+        String nombre = textNombre.getText();
+        String domicilio = textDomicilio.getText();
+        String num = textNumero.getText();
+        
+        
+        if (!contieneNumeros(nombre) && !contieneNumeros(domicilio) && !contieneLetras(num)){
         pr.setRazonSocial(textNombre.getText());
         pr.setDireccion(textDomicilio.getText());
         pr.setTelefono(Integer.parseInt(textNumero.getText()));
         pr.setId(Integer.parseInt(textId.getText()));
 
         c.modificarProveedor(pr);
-
+        }else{
+        
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos en los campos.");
+        if (contieneNumeros(nombre)){
+            textNombre.setText("");
+        }
+        if (contieneNumeros(domicilio)){
+            textDomicilio.setText("");
+        }
+        if (contieneLetras(num)){
+            textNumero.setText("");
+        }
+        
+        }
         
     }//GEN-LAST:event_MODIFICARActionPerformed
 
