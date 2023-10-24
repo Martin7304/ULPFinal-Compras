@@ -35,12 +35,12 @@ public class Conexion {
     }
         /*
     
-    FUNCIONALIDADES GENERALES                              // VISTAS menu bar
-                                                        PRODUCTOS           COMPRAS
-    Registrar productos                             /// registro            ¡nueva compra!
-    Realizar las Compras a proveedores              /// detall producto     detalles de compras  > segun fecha
-    Detalle de Compra                               ///     > stock mínimo                       > segun proveedor 
-    Administrar Proveedor                                   > mas comprados entre...             > segun compra
+    FUNCIONALIDADES GENERALES                                 // VISTAS menu bar
+                                                        PRODUCTOS               COMPRAS
+    Registrar productos                             /// registro                ¡nueva compra!
+    Realizar las Compras a proveedores              /// detall producto          detalles de compras  > segun fecha
+    Detalle de Compra                               ///     > stock mínimo                            > segun proveedor 
+    Administrar Proveedor                                   > mas comprados entre...                  > segun compra
                                                                   
                                                                     PROVEEDORES
     OTROS                                                     // registro
