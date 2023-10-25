@@ -159,5 +159,25 @@ public class AccesoProveedor {
          
          return listaProveedores;
     }
+    
+    public List<Proveedor> listarProveedores(){
+        ArrayList<Proveedor> lista=new ArrayList<>();
+        String sql="SELECT idProveedor, razonSocial FROM proveedor WHERE 1; ";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()){
+                Proveedor p = new Proveedor();
+                p.setId(rs.getInt("idProveedor"));
+                p.setRazonSocial(rs.getString("razonSocial"));
+                lista.add(p);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla PROVEEDOR");
+        }
+        
+        return lista;
+    }
       
 }

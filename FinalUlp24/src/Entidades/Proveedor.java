@@ -70,7 +70,10 @@ public class Proveedor {
     }
 
 
-
+    @Override
+    public String toString() {
+        return id + " | " + razonSocial;
+    }
 
 
 
