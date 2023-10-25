@@ -126,6 +126,11 @@ public class menúPrincipal extends javax.swing.JFrame {
         jMenu6.setText("Detalle de proveedor");
 
         jMenuItem11.setText("según producto");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem11);
 
         jMenu3.add(jMenu6);
@@ -187,6 +192,16 @@ public class menúPrincipal extends javax.swing.JFrame {
         escritorio.add(rp);
         escritorio.moveToFront(rp);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // CLICK SOBRE PROVEEDOR POR PRODUCTO
+        escritorio.removeAll();
+        escritorio.repaint();
+        provPorProducto pp = new provPorProducto();
+        pp.setVisible(true);
+        escritorio.add(pp);
+        escritorio.moveToFront(pp);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments

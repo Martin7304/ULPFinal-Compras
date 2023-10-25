@@ -5,12 +5,17 @@
  */
 package AccesoADatos;
 
+import Entidades.Producto;
 import Entidades.Proveedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -122,6 +127,37 @@ public class AccesoProveedor {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla PROVEEDOR");
         }
     }
-      
+     
+    public List<Proveedor> porProducto(int idProducto){
+        
+        ArrayList<Proveedor> listaProveedores = new ArrayList();
+        String sql = "SELECT P.razonSocial AS nombre, P.domicilio AS lugar, P.telefono AS tel "
+                 + "FROM proveedor "
+                 + "P JOIN compra C ON P.idProveedor = C.idProveedor "
+                 + "JOIN detallecompra D ON C.idCompra = D.idCompra "
+                 + "JOIN producto PR ON D.idProducto = PR.idProducto "
+                 + "WHERE PR.idProducto = ?; ";
+         
+           try {
+               PreparedStatement ps = con.prepareStatement(sql);
+               ps.setInt(1, idProducto);
+               ResultSet rs = ps.executeQuery();
+             
+                   while(rs.next()){
+                   Proveedor pr = new Proveedor();
+                   pr.setRazonSocial(rs.getString("nombre"));
+                   pr.setDireccion(rs.getString("lugar"));
+                   pr.setTelefono(rs.getInt("tel"));
+                   listaProveedores.add(pr);
+               }
+                   
+               
+               ps.close();
+           } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "El producto no cuenta con proveedor asociado!");
+           }
+         
+         return listaProveedores;
+    }
       
 }

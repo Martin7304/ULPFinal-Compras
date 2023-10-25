@@ -99,8 +99,7 @@ public class masComprado extends javax.swing.JInternalFrame {
         LocalDate F1 = fecha1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate F2 = fecha2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
-        //JDateChooser
-        
+             
          
         List<Producto> lista=acc.masComprados(F1, F2);
         for (Producto a: lista){

@@ -16,6 +16,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -231,27 +233,13 @@ public class AccesoProducto {
         return listaProductos;
         }
 
-       
-        
-    public List<Producto> masComprados (LocalDate fecha1, LocalDate fecha2) {
-        
-        JOptionPane.showMessageDialog(null, fecha1);
-        
-        ArrayList<Producto> listaProductos = new ArrayList();
-        String sql = "SELECT P.nombre, SUM(DC.cantidad)" +
-        "FROM producto AS P" +
-        "JOIN detallecompra AS DC ON P.idProducto = DC.idProducto" +
-        "JOIN compra AS C ON DC.idCompra = C.idCompra" +
-        "WHERE C.fecha BETWEEN ? AND ?" +
-        "GROUP BY P.nombre;";
-        
-        /*
-        SELECT P.nombre AS NombreProducto, SUM(DC.cantidad) AS CantidadComprada
+         /*
+        SELECT P.nombre, SUM(DC.cantidad)
         FROM producto AS P
         JOIN detallecompra AS DC ON P.idProducto = DC.idProducto
         JOIN compra AS C ON DC.idCompra = C.idCompra
         WHERE C.fecha BETWEEN '2023-08-20' AND '2023-10-05'
-        GROUP BY P.nombre;
+        GROUP BY P.nombre DESC;
         
         RETORNO > no devuelve la info solicitada según los nombres de los atributos de la tabla,
         sino las nuevos atributos instanciados en la consulta realizada para representar dicha informacón
@@ -259,19 +247,33 @@ public class AccesoProducto {
         producto.setNombre(rs.getString("NombreProducto"));
         producto.setStock(rs.getInt("CantidadComprada"));
         
-        */// TABLA DEVUELVE >> nombre y cantidad de productos en orden decendente     
+        */// TABLA DEVUELVE >> nombre y cantidad de productos en orden decendente 
+        
+    public List<Producto> masComprados (LocalDate fecha1, LocalDate fecha2) {
+        
+        ArrayList<Producto> listaProductos = new ArrayList();
+        String sql = "SELECT P.nombre AS nombre, SUM(DC.cantidad) AS cantidad " +
+"        FROM producto AS P " +
+"        JOIN detallecompra AS DC ON P.idProducto = DC.idProducto " +
+"        JOIN compra AS C ON DC.idCompra = C.idCompra " +
+"        WHERE C.fecha BETWEEN ? AND ? " +
+"        GROUP BY P.nombre DESC; ";
+        
+      
+        
         try {
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setDate(1, Date.valueOf(fecha1));
         ps.setDate(2, Date.valueOf(fecha2));
         ResultSet rs = ps.executeQuery();
-                    
+        
             while (rs.next()) {
                 
                Producto producto = new Producto();
                producto.setNombre(rs.getString("nombre"));
-               producto.setStock(rs.getInt("SUM(DC.cantidad)"));
+               producto.setStock(rs.getInt("cantidad"));
                listaProductos.add(producto);
+               
             }
             ps.close();
         } catch (SQLException ex) {
@@ -281,7 +283,28 @@ public class AccesoProducto {
         return listaProductos;
         
     }
+    public List<Producto> listarProductos(){
+        
+        ArrayList<Producto> listaPr = new ArrayList<>();
+        String sql="SELECT idProducto, nombre FROM producto WHERE estado = 1";
     
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()){
+                Producto p = new Producto();
+                p.setId(rs.getInt("idProducto"));
+                p.setNombre(rs.getString("nombre"));
+                listaPr.add(p);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla PRODUCTO");
+        }
+        
+        
+        return listaPr;
+    }
 }
 // armar el objeto y añadirlo a la lista
                 // el SELC devuelve nombre y cantidad solamente
