@@ -87,7 +87,14 @@ public class AccesoProducto {
     }
     
     public Producto buscarProducto(int id) {
+        
         Producto p = new Producto();
+        ///VALIDAR QUE EL ID RECIBIDO POR PARAMETRO SEA MAYOR A CERO
+        if (id <= 0) {
+            JOptionPane.showMessageDialog(null, "ID de producto no válido.");
+            return p;
+        }
+    
         try {
             String busqueda = "SELECT `idProducto`, `nombre`, `descripcion`, `precioActual`, `stock`, `estado`"
                     + " FROM `producto` WHERE idProducto= ? AND estado = 1";

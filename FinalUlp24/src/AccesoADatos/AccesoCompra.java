@@ -60,7 +60,10 @@ public class AccesoCompra {
  
     public Compra porCompra(int id){
         Compra c = new Compra();
-        String sql = "SELECT `idProveedor`, `fecha` FROM `compra` WHERE idCompra = ?";
+        String sql = "SELECT c.idProveedor AS pr, c.fecha AS f, p.razonSocial AS rs " +
+                 "FROM compra c " +
+                 "JOIN proveedor p ON c.idProveedor = p.idProveedor " +
+                 "WHERE c.idCompra = ?";
         
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -69,9 +72,10 @@ public class AccesoCompra {
              
               if (rs.next()) {
                   Proveedor proveedor = new Proveedor();
-                  proveedor.setId(rs.getInt("idProveedor"));
+                  proveedor.setId(rs.getInt("pr"));
+                  proveedor.setRazonSocial(rs.getString("rs")); 
                   c.setProveedor(proveedor);
-                  c.setFechaPedido(rs.getDate("fecha").toLocalDate());
+                  c.setFechaPedido(rs.getDate("f").toLocalDate());
                   
               } else {
                 JOptionPane.showMessageDialog(null, "No existe ela compra.");
@@ -85,31 +89,82 @@ public class AccesoCompra {
     }
    
     
-       public Compra porFecha(LocalDate fecha){
+    public Compra porFecha(LocalDate fecha) {
+           
         Compra c = new Compra();
-        String sql = "SELECT `idCompra`, `idProveedor` FROM `compra` WHERE `fecha` = ?";
-        
-        try {
-            PreparedStatement ps=con.prepareStatement(sql);
-             ps.setDate(1, Date.valueOf(fecha));
-             ResultSet rs=ps.executeQuery();
-             
-              if (rs.next()) {
-                  Proveedor proveedor = new Proveedor();
-                  proveedor.setId(rs.getInt("idProveedor"));
-                  c.setProveedor(proveedor);
-                  c.setId(rs.getInt("idCompra"));
-                  
-              } else {
-                JOptionPane.showMessageDialog(null, "No existe ela compra.");
-            }
-             
-            ps.close(); 
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Compras. " + ex.getMessage());
+        String sql = "SELECT c.idCompra, c.idProveedor, c.fecha, p.razonSocial " +
+                 "FROM compra c " +
+                 "JOIN proveedor p ON c.idProveedor = p.idProveedor " +
+                 "WHERE fecha = ?";
+
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setDate(1, Date.valueOf(fecha));
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            Proveedor proveedor = new Proveedor();
+            proveedor.setId(rs.getInt("idProveedor"));
+            proveedor.setRazonSocial(rs.getString("razonSocial"));
+            c.setProveedor(proveedor);
+            c.setId(rs.getInt("idCompra"));
+             // Usar el alias "c.idCompra" para el idCompra
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe la compra.");
         }
-       return c; 
+
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Compras. " + ex.getMessage());
     }
-   
+    return c;
+    }
+       
+    public List<Compra> porProveedor(int idProveedor){
+            ArrayList<Compra> lista = new ArrayList<>();
+            
+            String sql="SELECT c.idCompra, c.idProveedor, c.fecha FROM compra AS c "
+                    + "JOIN proveedor AS p ON c.idProveedor = p.idProveedor "
+                    + "WHERE c.idProveedor = ?";
+            
+        try {   
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, idProveedor);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Compra c = new Compra();
+                c.setId(rs.getInt("idCompra"));
+                c.setFechaPedido(rs.getDate("fecha").toLocalDate());
+                lista.add(c);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccesoCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+        return lista;
+
+    }
+    
+   public List<Compra> listarCompras(){
+        ArrayList<Compra> lista = new ArrayList<>();
+        String sql="SELECT `idCompra`, `fecha` FROM `compra` WHERE 1";
+        
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Compra c = new Compra();
+                c.setId(rs.getInt("idCompra"));
+                c.setFechaPedido(rs.getDate("fecha").toLocalDate());
+                lista.add(c);
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla COMPRA"+ex.getMessage());
+        }
+        return lista;
+    }
     
 }

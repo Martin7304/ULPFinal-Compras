@@ -5,12 +5,16 @@
  */
 package AccesoADatos;
 
+import Entidades.Compra;
 import Entidades.DetalleCompra;
+import Entidades.Producto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -52,6 +56,39 @@ public class AccesoDetalle {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla DETALLE DE COMPRA"+ex.getMessage());
         }
     }
+    
+    public DetalleCompra detallePorId(int id) {
+    DetalleCompra dc = new DetalleCompra();
+    String sql = "SELECT `idDetalle`, `cantidad`, `precio`, `idCompra`, `idProducto` "
+            + " FROM `detallecompra` WHERE idCompra = ? ;";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setInt(1, id);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                Compra compra = new Compra();
+                Producto producto = new Producto();
+                dc.setId(rs.getInt("idDetalle"));
+                dc.setCantidad(rs.getInt("cantidad"));
+                dc.setPrecioUnitario(rs.getDouble("precio"));
+                compra.setId(rs.getInt("idCompra"));
+                dc.setCompra(compra);
+                producto.setId(rs.getInt("idProducto"));
+                dc.setProducto(producto);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el detalle de compra.");
+                // Devolver un objeto DetalleCompra vacío
+                return new DetalleCompra();
+            }
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder al detalle de compra: " + ex.getMessage());
+    }
+
+    return dc;
+}
+    
     
     
 }

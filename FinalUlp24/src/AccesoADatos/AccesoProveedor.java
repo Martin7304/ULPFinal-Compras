@@ -160,6 +160,7 @@ public class AccesoProveedor {
          return listaProveedores;
     }
     
+    
     public List<Proveedor> listarProveedores(){
         ArrayList<Proveedor> lista=new ArrayList<>();
         String sql="SELECT idProveedor, razonSocial FROM proveedor WHERE 1; ";
@@ -174,7 +175,7 @@ public class AccesoProveedor {
                 lista.add(p);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla PROVEEDOR");
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla PROVEEDOR"+ex.getMessage());
         }
         
         return lista;
