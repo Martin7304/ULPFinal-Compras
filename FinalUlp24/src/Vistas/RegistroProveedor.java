@@ -193,7 +193,7 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
         String domicilio = textDomicilio.getText();
         String num = textNumero.getText();
         
-        if (!contieneNumeros(nombre) && !contieneNumeros(domicilio) && !contieneLetras(num)){
+        if (!contieneNumeros(nombre)&& !contieneLetras(num)){
         
         pr.setRazonSocial(textNombre.getText());
         pr.setDireccion(textDomicilio.getText());
@@ -208,9 +208,7 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
         if (contieneNumeros(nombre)){
             textNombre.setText("");
         }
-        if (contieneNumeros(domicilio)){
-            textDomicilio.setText("");
-        }
+
         if (contieneLetras(num)){
             textNumero.setText("");
         }
@@ -231,7 +229,7 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
         String num = textNumero.getText();
         
         
-        if (!contieneNumeros(nombre) && !contieneNumeros(domicilio) && !contieneLetras(num)){
+        if (!contieneNumeros(nombre)&& !contieneLetras(num)){
         pr.setRazonSocial(textNombre.getText());
         pr.setDireccion(textDomicilio.getText());
         pr.setTelefono(Integer.parseInt(textNumero.getText()));
@@ -244,9 +242,7 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
         if (contieneNumeros(nombre)){
             textNombre.setText("");
         }
-        if (contieneNumeros(domicilio)){
-            textDomicilio.setText("");
-        }
+
         if (contieneLetras(num)){
             textNumero.setText("");
         }

@@ -200,7 +200,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         String precio = textPrecio.getText();
         
         //CONDICION PARA QUE NO SE PUEDAN INGRESAR NUMEROS NI LETRAS
-        if (!contieneNumeros(nombre) && !contieneNumeros(descripcion) && !contieneLetras(precio) && !contieneLetras(stock)){
+        if (!contieneNumeros(nombre)&& !contieneLetras(precio) && !contieneLetras(stock)){
 
 
         pr.setNombre(textNombre.getText());
@@ -216,9 +216,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         if (contieneNumeros(nombre)){
             textNombre.setText("");
         }
-        if (contieneNumeros(descripcion)){
-            textDescripcion.setText("");
-        }
+
         if (contieneLetras(precio)){
             textPrecio.setText("");
         }
@@ -242,7 +240,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         String precio = textPrecio.getText();
         
         
-         if (!contieneNumeros(nombre) && !contieneNumeros(descripcion) && !contieneLetras(precio) && !contieneLetras(stock)){
+         if (!contieneNumeros(nombre)&& !contieneLetras(precio) && !contieneLetras(stock)){
         pr.setNombre(textNombre.getText());
         pr.setDescripcion(textDescripcion.getText());
         pr.setPrecioActual(Double.parseDouble(textPrecio.getText()));
@@ -257,9 +255,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         if (contieneNumeros(nombre)){
             textNombre.setText("");
         }
-        if (contieneNumeros(descripcion)){
-            textDescripcion.setText("");
-        }
+
         if (contieneLetras(precio)){
             textPrecio.setText("");
         }

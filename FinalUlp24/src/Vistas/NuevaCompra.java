@@ -160,7 +160,7 @@ public class NuevaCompra extends javax.swing.JInternalFrame {
         //creamos detalle
         detalle.setCompra(compra);
         detalle.setProducto(producto);
-        detalle.setCantidad(Integer.parseInt(precio));
+        detalle.setCantidad(Integer.parseInt(cantidad));
         detalle.setPrecioUnitario(Double.parseDouble(precio));
         acc2.guardarDetalle(detalle);
         } else {

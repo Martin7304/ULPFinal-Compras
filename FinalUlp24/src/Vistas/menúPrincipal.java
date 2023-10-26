@@ -101,9 +101,19 @@ public class menúPrincipal extends javax.swing.JFrame {
         jMenu5.setText("Detalle de compra");
 
         jMenuItem7.setText("según compra");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem7);
 
         jMenuItem8.setText("según fecha");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem8);
 
         jMenuItem9.setText("según proveedor");
@@ -202,6 +212,27 @@ public class menúPrincipal extends javax.swing.JFrame {
         escritorio.add(pp);
         escritorio.moveToFront(pp);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        PorCompra pr = new PorCompra();
+        pr.setVisible(true);
+        escritorio.add(pr);
+        escritorio.moveToFront(pr);
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        PorFecha pr = new PorFecha();
+        pr.setVisible(true);
+        escritorio.add(pr);
+        escritorio.moveToFront(pr);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
