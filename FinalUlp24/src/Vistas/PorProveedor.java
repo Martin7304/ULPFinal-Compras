@@ -41,6 +41,9 @@ public class PorProveedor extends javax.swing.JInternalFrame {
         }
     }
     public void cargarCompra(){
+        
+        comboCompra.removeAllItems();
+        
         AccesoCompra acc = new AccesoCompra();
         Compra c = new Compra();
         List<Compra> compras= new ArrayList<>();
@@ -83,6 +86,11 @@ public class PorProveedor extends javax.swing.JInternalFrame {
         jLabel2.setText("Elije un proveedor:");
 
         comboProveedor.setSelectedIndex(-1);
+        comboProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboProveedorMouseClicked(evt);
+            }
+        });
         comboProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboProveedorActionPerformed(evt);
@@ -230,7 +238,9 @@ public class PorProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buscarActionPerformed
 
     private void comboProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProveedorActionPerformed
-        
+        //CLICK SOBRE COMBOPROVEEDOR
+        comboCompra.removeAllItems();
+        cargarCompra();
     }//GEN-LAST:event_comboProveedorActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
@@ -240,6 +250,11 @@ public class PorProveedor extends javax.swing.JInternalFrame {
         textCantidad.setText("");
         textPrecio.setText("");
     }//GEN-LAST:event_limpiarActionPerformed
+
+    private void comboProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboProveedorMouseClicked
+        comboCompra.removeAll();
+        cargarCompra();
+    }//GEN-LAST:event_comboProveedorMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
