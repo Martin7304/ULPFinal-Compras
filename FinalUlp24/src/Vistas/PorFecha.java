@@ -223,16 +223,22 @@ public class PorFecha extends javax.swing.JInternalFrame {
         LocalDate F1 = Fecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
         c = acc.porFecha(F1); //
+        textProveedor.setText(""+c.getProveedor().getId());
+        textRSocial.setText(""+c.getProveedor().getRazonSocial());
+        textCompra.setText(""+c.getId());
+        
         d = acc2.detallePorId(c.getId());
         p = acc3.buscarProducto(d.getProducto().getId());
-         
-       textProveedor.setText(""+c.getProveedor().getId());
-       textRSocial.setText(""+c.getProveedor().getRazonSocial());
-       textCompra.setText(""+c.getId());
+              
+    if (d != null){       
        textCantidad.setText(""+d.getCantidad());
        textPrecio.setText(""+d.getPrecioUnitario());
        textProducto.setText(""+p.getNombre());
-       
+    } else {
+       textCantidad.setText("");
+       textPrecio.setText("");
+       textProducto.setText("");
+    }
        
         
     }//GEN-LAST:event_jButton1ActionPerformed
