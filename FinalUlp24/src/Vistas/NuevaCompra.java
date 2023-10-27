@@ -62,70 +62,77 @@ public class NuevaCompra extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         textCantidad = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         textPrecio = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jCalendario = new com.toedter.calendar.JCalendar();
         comboProducto = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        fechaElegida = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setMaximizable(true);
+        setResizable(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
         jLabel1.setText("¡NUEVA COMPRA!");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Elije un proveedor:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
-        getContentPane().add(comboProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 189, -1));
+        getContentPane().add(comboProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 230, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Elije un producto:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Cantidad:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
 
         textCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textCantidadActionPerformed(evt);
             }
         });
-        getContentPane().add(textCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 189, -1));
+        getContentPane().add(textCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 230, -1));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel5.setText("Precio unitario:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 20));
-        getContentPane().add(textPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 189, -1));
+        textPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textPrecioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(textPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 230, -1));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Fecha:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-        getContentPane().add(jCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 170, 130));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
 
         comboProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboProductoActionPerformed(evt);
             }
         });
-        getContentPane().add(comboProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 189, -1));
+        getContentPane().add(comboProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 230, -1));
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jButton1.setText("Realizar compra");
+        jButton1.setText("REALIZAR COMPRA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 170, 40));
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 460));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 460, 40));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 42, 840, 10));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Precio Unitario:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+        getContentPane().add(fechaElegida, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 230, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,7 +152,7 @@ public class NuevaCompra extends javax.swing.JInternalFrame {
         Proveedor proveedor = (Proveedor) comboProveedor.getSelectedItem();
         String cantidad = textCantidad.getText();
         String precio = textPrecio.getText();
-        LocalDate fecha = jCalendario.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fecha = fechaElegida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
         //RESTRICCIONES
         if(!contieneLetras(cantidad)&&!contieneLetras(precio)){
@@ -178,19 +185,23 @@ public class NuevaCompra extends javax.swing.JInternalFrame {
         // CLICK SOBRE COMBO BOX <PRODUCTO>
     }//GEN-LAST:event_comboProductoActionPerformed
 
+    private void textPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textPrecioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Producto> comboProducto;
     private javax.swing.JComboBox<Proveedor> comboProveedor;
+    private com.toedter.calendar.JDateChooser fechaElegida;
     private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JCalendar jCalendario;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField textCantidad;
     private javax.swing.JTextField textPrecio;
     // End of variables declaration//GEN-END:variables
