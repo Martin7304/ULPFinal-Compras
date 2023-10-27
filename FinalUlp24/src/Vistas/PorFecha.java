@@ -66,6 +66,10 @@ public class PorFecha extends javax.swing.JInternalFrame {
             }
         });
 
+        textProveedor.setEditable(false);
+
+        textCompra.setEditable(false);
+
         jButton2.setText("LIMPIAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +92,7 @@ public class PorFecha extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Razón social:");
 
+        textRSocial.setEditable(false);
         textRSocial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textRSocialActionPerformed(evt);
@@ -103,17 +108,21 @@ public class PorFecha extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Cantidad:");
 
+        textProducto.setEditable(false);
         textProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textProductoActionPerformed(evt);
             }
         });
 
+        textPrecio.setEditable(false);
         textPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textPrecioActionPerformed(evt);
             }
         });
+
+        textCantidad.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

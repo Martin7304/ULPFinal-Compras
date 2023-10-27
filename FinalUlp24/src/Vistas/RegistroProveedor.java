@@ -202,12 +202,16 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
 
     private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
         // TODO add your handling code here:
-         AccesoProveedor prod = new AccesoProveedor();
-        Proveedor p = prod.buscarProveedor(Integer.parseInt(textId.getText()));
+        AccesoProveedor prod = new AccesoProveedor();
+        String idProveedor = textId.getText();
+        if(!contieneLetras(idProveedor)){
+        Proveedor p = prod.buscarProveedor(Integer.parseInt(idProveedor));
         textNombre.setText(p.getRazonSocial());
         textDomicilio.setText(p.getDireccion());
         textNumero.setText(""+p.getTelefono());
-
+        } else {
+        JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos en el CAMPO ID.");
+        }
     }//GEN-LAST:event_BUSCARActionPerformed
 
     private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
@@ -288,7 +292,12 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         AccesoProveedor acc = new AccesoProveedor();
+        String idProveedor = textId.getText();
+        if(!contieneLetras(idProveedor)){
         acc.eliminarProveedor(Integer.parseInt(textId.getText()));
+        } else {
+        JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos en el CAMPO ID.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNumeroActionPerformed

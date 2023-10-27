@@ -11,6 +11,7 @@ import AccesoADatos.AccesoProducto;
 import Entidades.Compra;
 import Entidades.DetalleCompra;
 import Entidades.Producto;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -73,6 +74,10 @@ public class PorCompra extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Fecha de Compra:");
 
+        textProveedor.setEditable(false);
+
+        textFecha.setEditable(false);
+
         limpiar.setText("LIMPIAR");
         limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,11 +87,19 @@ public class PorCompra extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Razón social:");
 
+        textRSocial.setEditable(false);
+
         jLabel7.setText("Producto:");
 
         jLabel8.setText("Cantidad:");
 
         jLabel9.setText("Precio unitario:");
+
+        textProducto.setEditable(false);
+
+        textCantidad.setEditable(false);
+
+        textPrecio.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,8 +204,9 @@ public class PorCompra extends javax.swing.JInternalFrame {
         Compra c = new Compra();
         Producto p = new Producto();
         DetalleCompra d = new DetalleCompra();
-        
-       c = acc.porCompra(Integer.parseInt(textId.getText()));
+        int idCompra = Integer.parseInt(textId.getText()); 
+        if (!contieneLetras(""+idCompra)){
+       c = acc.porCompra(idCompra);
        
        textProveedor.setText(""+c.getProveedor().getId());
        textRSocial.setText(""+c.getProveedor().getRazonSocial());
@@ -210,7 +224,10 @@ public class PorCompra extends javax.swing.JInternalFrame {
        textPrecio.setText("");
        textProducto.setText("");
     }
-   
+        } else {
+       JOptionPane.showMessageDialog(null, "Por favor, ingrese valores validos en el CAMPO ID.");     
+        }
+        
     }//GEN-LAST:event_buscarActionPerformed
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
@@ -251,4 +268,13 @@ public class PorCompra extends javax.swing.JInternalFrame {
         textCantidad.setText("");
         textPrecio.setText("");
    }
+   
+   private boolean contieneLetras(String texto) {
+    for (char c : texto.toCharArray()) {
+        if (Character.isLetter(c)) {
+            return true;
+        }
+    }
+    return false;
+}
 }

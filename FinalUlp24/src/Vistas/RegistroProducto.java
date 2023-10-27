@@ -209,8 +209,8 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         
         //CONDICION PARA QUE NO SE PUEDAN INGRESAR NUMEROS NI LETRAS
         if (!contieneNumeros(nombre)&& !contieneLetras(precio) && !contieneLetras(stock)){
-
-
+    
+    
         pr.setNombre(textNombre.getText());
         pr.setDescripcion(textDescripcion.getText());
         pr.setPrecioActual(Double.parseDouble(textPrecio.getText()));
@@ -231,10 +231,8 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         if (contieneLetras(stock)){
             textStock.setText("");
         }
-
     }
-        
-
+     
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed

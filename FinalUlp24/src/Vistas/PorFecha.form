@@ -143,8 +143,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textProveedor">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textCompra">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
@@ -195,6 +201,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textRSocial">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textRSocialActionPerformed"/>
       </Events>
@@ -224,16 +233,25 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textProducto">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textProductoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textPrecio">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textPrecioActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textCantidad">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
