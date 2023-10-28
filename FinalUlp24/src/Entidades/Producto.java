@@ -29,11 +29,10 @@ public class Producto {
         this.estado = estado;
     }
 
-    public Producto(String nombre, String descripcion, double precioActual, int stock, boolean estado) {
+    public Producto(String nombre, String descripcion, double precioActual, boolean estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precioActual = precioActual;
-        this.stock = stock;
         this.estado = estado;
     }
 

@@ -36,8 +36,9 @@ public class AccesoDetalle {
         
         String sql = "INSERT INTO `detallecompra` (`cantidad`, `precio`, `idCompra`, `idProducto`)"
                 + " VALUES (?, ?, ?, ?); ";
-        
+        String sqlStock = "UPDATE `producto` SET `stock` = ? WHERE `idProducto` = ?; ";
         try {
+            //GUARDAMOS UN NUEVO DETALLE DE COMPRA
             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             
             ps.setInt(1, detalle.getCantidad());
@@ -52,6 +53,15 @@ public class AccesoDetalle {
                JOptionPane.showMessageDialog(null,"Detalle de compra guardado");
             }
             ps.close();
+        
+        //GUARDAMOS CAMBIOS EN STOCK PRODUCTO
+        int nuevoStock = (obtenerStockActualProducto(detalle.getProducto().getId()))+(detalle.getCantidad());
+        PreparedStatement psStock=con.prepareStatement(sqlStock,Statement.RETURN_GENERATED_KEYS);
+        psStock.setInt(1, nuevoStock);
+        psStock.setInt(2, detalle.getProducto().getId());
+        psStock.executeUpdate();;
+        psStock.close();
+        
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla DETALLE DE COMPRA"+ex.getMessage());
         }
@@ -89,6 +99,24 @@ public class AccesoDetalle {
     return dc;
 }
     
-    
+  private int obtenerStockActualProducto(int idProducto) {
+    String sql = "SELECT `stock` FROM `producto` WHERE `idProducto` = ?";
+    int stock=0;
+    PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idProducto);
+            ResultSet rs = ps.executeQuery();
+            stock = 0;
+            if (rs.next()) {
+                stock = rs.getInt("stock");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Problema con el drive ");
+        }
+ 
+
+    return stock;
+}  
     
 }

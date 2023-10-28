@@ -38,16 +38,15 @@ public class AccesoProducto {
     
     public void guardarProducto(Producto producto){
         
-         String sql = "INSERT INTO Producto (nombre, descripcion, precioActual, stock, estado)"
-                 + " VALUES (?, ?, ?, ?, ?)";
+         String sql = "INSERT INTO Producto (nombre, descripcion, precioActual, estado)"
+                 + " VALUES (?, ?, ?, ?)";
         
        try {
            PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
            ps.setString(1, producto.getNombre());
            ps.setString(2, producto.getDescripcion());
            ps.setDouble(3, producto.getPrecioActual());
-           ps.setInt(4, producto.getStock());
-           ps.setBoolean(5, producto.isEstado());
+           ps.setBoolean(4, producto.isEstado());
            ps.executeUpdate();
            
            ResultSet rs=ps.getGeneratedKeys();
@@ -65,15 +64,14 @@ public class AccesoProducto {
     
     public void modificarProduto (Producto producto) {
         
-        String sql="UPDATE producto SET nombre=?, descripcion=?, precioActual=?, stock=? WHERE idProducto=?";
+        String sql="UPDATE producto SET nombre=?, descripcion=?, precioActual=? WHERE idProducto=?";
     
         try {   
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, producto.getNombre());
             ps.setString(2, producto.getDescripcion());
             ps.setDouble(3, producto.getPrecioActual());
-            ps.setInt(4, producto.getStock());
-            ps.setInt(5, producto.getId());
+            ps.setInt(4, producto.getId());
             
             int exito = ps.executeUpdate();
             

@@ -43,8 +43,6 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         textDescripcion = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         textPrecio = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        textStock = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         RadioEstado = new javax.swing.JRadioButton();
         botonModificar = new javax.swing.JButton();
@@ -113,27 +111,16 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         });
         getContentPane().add(textPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 224, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Stock:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, 20));
-
-        textStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textStockActionPerformed(evt);
-            }
-        });
-        getContentPane().add(textStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 224, -1));
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Estado:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, -1, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, 20));
 
         RadioEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RadioEstadoActionPerformed(evt);
             }
         });
-        getContentPane().add(RadioEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 20, 20));
+        getContentPane().add(RadioEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 20, 20));
 
         botonModificar.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         botonModificar.setText("MODIFICAR");
@@ -185,7 +172,6 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         textNombre.setText(p.getNombre());
         textDescripcion.setText(p.getDescripcion());
         textPrecio.setText(""+p.getPrecioActual());
-        textStock.setText(""+p.getStock());
         RadioEstado.setSelected(p.isEstado());
         
     }//GEN-LAST:event_botonBuscarActionPerformed
@@ -194,27 +180,22 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textPrecioActionPerformed
 
-    private void textStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textStockActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textStockActionPerformed
-
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         // Guardar producto
         AccesoProducto acc = new AccesoProducto();
         Producto pr = new Producto();
         String nombre = textNombre.getText();
         String descripcion = textDescripcion.getText();
-        String stock = textStock.getText();
         String precio = textPrecio.getText();
         
         //CONDICION PARA QUE NO SE PUEDAN INGRESAR NUMEROS NI LETRAS
-        if (!contieneNumeros(nombre)&& !contieneLetras(precio) && !contieneLetras(stock)){
+        if (!contieneNumeros(nombre)&& !contieneLetras(precio)){
     
     
         pr.setNombre(textNombre.getText());
         pr.setDescripcion(textDescripcion.getText());
         pr.setPrecioActual(Double.parseDouble(textPrecio.getText()));
-        pr.setStock(Integer.parseInt(textStock.getText()));
+       
         pr.setEstado(true);
         
         acc.guardarProducto(pr);
@@ -228,9 +209,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         if (contieneLetras(precio)){
             textPrecio.setText("");
         }
-        if (contieneLetras(stock)){
-            textStock.setText("");
-        }
+      
     }
      
     }//GEN-LAST:event_botonGuardarActionPerformed
@@ -242,15 +221,14 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         
         String nombre = textNombre.getText();
         String descripcion = textDescripcion.getText();
-        String stock = textStock.getText();
         String precio = textPrecio.getText();
         
         
-         if (!contieneNumeros(nombre)&& !contieneLetras(precio) && !contieneLetras(stock)){
+         if (!contieneNumeros(nombre)&& !contieneLetras(precio)){
         pr.setNombre(textNombre.getText());
         pr.setDescripcion(textDescripcion.getText());
         pr.setPrecioActual(Double.parseDouble(textPrecio.getText()));
-        pr.setStock(Integer.parseInt(textStock.getText()));
+        
         pr.setId(Integer.parseInt(textId.getText()));
         //pr.setEstado(RadioEstado.isSelected());
         
@@ -265,9 +243,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         if (contieneLetras(precio)){
             textPrecio.setText("");
         }
-        if (contieneLetras(stock)){
-            textStock.setText("");
-        }}
+      }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -298,7 +274,6 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -309,7 +284,6 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textId;
     private javax.swing.JTextField textNombre;
     private javax.swing.JTextField textPrecio;
-    private javax.swing.JTextField textStock;
     // End of variables declaration//GEN-END:variables
 
     
@@ -319,7 +293,7 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         textNombre.setText("");
         textDescripcion.setText("");
         textPrecio.setText("");
-        textStock.setText("");
+       
         RadioEstado.setSelected(false);
 
     }
