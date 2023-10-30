@@ -94,7 +94,13 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Descripción:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
-        getContentPane().add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 224, -1));
+
+        textNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 224, 20));
 
         textDescripcion.setColumns(20);
         textDescripcion.setRows(5);
@@ -179,13 +185,19 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         // TODO add your handling code here:
-         AccesoProducto prod = new AccesoProducto();
+        String id = ""+textId.getText();
+        if (id != null && !contieneLetras(id)){
+            
+        AccesoProducto prod = new AccesoProducto();
         Producto p = prod.buscarProducto(Integer.parseInt(textId.getText()));
         textNombre.setText(p.getNombre());
         textDescripcion.setText(p.getDescripcion());
         textPrecio.setText(""+p.getPrecioActual());
         RadioEstado.setSelected(p.isEstado());
         
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un ID para poder realizar la busqueda.");
+        }
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void textPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrecioActionPerformed
@@ -260,8 +272,14 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        String id = ""+textId.getText();
+        if (id != null && !contieneLetras(id)){
         AccesoProducto acc = new AccesoProducto();
         acc.eliminarProducto(Integer.parseInt(textId.getText()));
+        } else {
+             JOptionPane.showMessageDialog(null, "Por favor, ingrese un ID para eliminar");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -272,6 +290,10 @@ public class RegistroProducto extends javax.swing.JInternalFrame {
     private void RadioEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RadioEstadoActionPerformed
+
+    private void textNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

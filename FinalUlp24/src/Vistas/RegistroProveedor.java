@@ -148,9 +148,11 @@ public class RegistroProveedor extends javax.swing.JInternalFrame {
 
     private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
         // TODO add your handling code here:
-        AccesoProveedor prod = new AccesoProveedor();
-        String idProveedor = textId.getText();
+        String idProveedor = ""+textId.getText();
+        
         if(!contieneLetras(idProveedor)){
+        AccesoProveedor prod = new AccesoProveedor();
+        
         Proveedor p = prod.buscarProveedor(Integer.parseInt(idProveedor));
         textNombre.setText(p.getRazonSocial());
         textDomicilio.setText(p.getDireccion());
